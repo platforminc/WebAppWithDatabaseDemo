@@ -1,22 +1,7 @@
-trigger: 'none' # will disable CI builds entirely
-   
-jobs:
-- job: WebApp
-  displayName: 'Build Web App'
-  pool:
-    vmImage: 'windows-2019'
-  variables:
-    BuildConfiguration: release
-  
-  steps:
-  
-  - task: UseDotNet@2
-    displayName: Install .NET 6 sdk
-    inputs:
-      packageType: sdk
-      version: 6.0.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
+pool:
+  name: Azure Pipelines
 
+steps:
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
@@ -49,3 +34,4 @@ jobs:
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
+
