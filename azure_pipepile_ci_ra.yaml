@@ -1,20 +1,21 @@
-pool:
-  name: Azure Pipelines
-#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
-#Your build pipeline references an undefined variable named ‘Parameters.TestProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
-#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
-
-steps:
-
-- task: UseDotNet@2
-  displayName: Install .NET 6 sdk
-  inputs:
-    packageType: sdk
-    version: 6.0.x
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+trigger: 'none' # will disable CI builds entirely
+   
+jobs:
+- job: WebApp
+  displayName: 'Build Web App'
+  pool:
+    vmImage: 'windows-2019'
+  variables:
+    BuildConfiguration: release
+  
+  steps:
+  
+  - task: UseDotNet@2
+    displayName: Install .NET 6 sdk
+    inputs:
+      packageType: sdk
+      version: 6.0.x
+      installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
   displayName: Restore
