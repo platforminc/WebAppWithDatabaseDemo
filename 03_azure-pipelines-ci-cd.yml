@@ -81,7 +81,7 @@ stages:
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
         SonarCloud: SonarCloud
-        organization: houssemdellai
+        organization: platforminc
         projectKey: WebAppWithDatabaseDemo
 
     - task: DotNetCoreCLI@2
@@ -182,8 +182,8 @@ stages:
   variables:
     azureSubscription: 'WebAppWithDatabaseDemo_spn' # couldn't be referenced
     ResourceGroupName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)-RG'
-    Database.Admin: 'houssem'
-    Database.Password: '@Aa123456' # to be secured in Key Vault
+    Database.Admin: 'toyin'
+    Database.Password: $(sql_password) # to be secured in Key Vault
     Database.Name: 'EmployeesDB'
     WebAppName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)'
     WebAppNameUrl: 'https://$(WebAppName).azurewebsites.net/'
