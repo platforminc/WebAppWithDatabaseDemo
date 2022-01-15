@@ -1,8 +1,9 @@
 pool:
   name: Azure Pipelines
+trigger: none
 
 steps:
-  
+
 - task: UseDotNet@2
   displayName: Install .NET 6 sdk
   inputs:
