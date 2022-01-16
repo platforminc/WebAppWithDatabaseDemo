@@ -181,7 +181,7 @@ stages:
   dependsOn: Build_Stage
   variables:
     azureSubscription: 'WebAppWithDatabaseDemo_spn' # couldn't be referenced
-    ResourceGroupName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)-RG'
+    ResourceGroupName: 'udemy_learning'
     Database.Admin: 'toyin'
     Database.Password: $(sql_password) # to be secured in Key Vault
     Database.Name: 'EmployeesDB'
